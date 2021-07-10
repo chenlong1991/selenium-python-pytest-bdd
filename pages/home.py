@@ -9,10 +9,16 @@ class HomePage(BasePage):
     def PAGE_TITLE(self):
         return (By.TAG_NAME, 'h1')
     SUBHEADER = (By.TAG_NAME, 'h2')
-    SUBPAGE_LINKS = (By.XPATH, '//*[@id="content"]/ul/li')
+    SUBPAGE_LINKS = (By.XPATH, '//*[@id="content"]/ul/li/a')
 
     def __init__(self, browser):
         self.browser = browser
+
+    def click_page_link(self, page_name):
+        links = self.browser.find_elements(*self.SUBPAGE_LINKS)
+        for link in links:
+            if link.text.startswith(page_name):
+                link.click()
 
     def get_page_title_text(self):
         return self.browser.find_element(*self.PAGE_TITLE).text
@@ -24,3 +30,6 @@ class HomePage(BasePage):
         links = self.browser.find_elements(*self.SUBPAGE_LINKS)
         titles = [link.text.split(" (")[0] for link in links]
         return titles
+
+    def get_current_url(self):
+        return self.browser.current_url

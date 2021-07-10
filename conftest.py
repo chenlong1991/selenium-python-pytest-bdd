@@ -55,7 +55,7 @@ def browser(config):
     b.quit()
 
 
-@pytest.fixture()
+@pytest.fixture
 def datatable():
     return DataTable()
 
@@ -77,7 +77,6 @@ class DataTable(object):
 
 @given(parsers.parse('I have navigated to the \'the-internet\' "{page_name}" page'), target_fixture='navigate_to')
 def navigate_to(browser, page_name):
-
     BASE_URL = "https://the-internet.herokuapp.com"
 
     PAGE_URLS = {
@@ -89,7 +88,9 @@ def navigate_to(browser, page_name):
         "inputs": BASE_URL + "/inputs",
         "secure area": BASE_URL + "/secure"
     }
-    browser.get(PAGE_URLS.get(page_name.lower()))
+    url = PAGE_URLS.get(page_name.lower())
+    browser.get(url)
+    return url
 
 
 @then(parsers.parse('a "{text}" banner is displayed in the top-right corner of the page'))
@@ -108,10 +109,12 @@ def verify_banner_text(browser, text):
         if attr.startswith("border"):
             assert "0px" == attr.split(": ")[1]
 
+
 @then(parsers.parse('the page has a footer containing "{text}"'))
 def verify_footer_text(browser, text):
-  assert text == BasePage(browser).get_page_footer_text()
+    assert text == BasePage(browser).get_page_footer_text()
+
 
 @then(parsers.parse('the link in the page footer goes to "{url}"'))
 def verify_footer_link_url(browser, url):
-  assert url == BasePage(browser).get_page_footer_link_url()
+    assert url == BasePage(browser).get_page_footer_link_url()

@@ -57,13 +57,13 @@ Feature: Home Page
   And the page has a footer containing "Powered by Elemental Selenium"
   And the link in the page footer goes to "http://elementalselenium.com/"
 
-# Scenario Outline: Open <page> page
-#   When I click on the "<page>" link
-#   Then the "<page>" page opens
-#   Examples:
-#     | page                |
-#     | Checkboxes          |
-#     | Dropdown            |
-#     | Dynamic Controls    |
-#     | Form Authentication |
-#     | Inputs              |
+Scenario Outline: Open <page> page
+  When I click on the "<page>" link
+  Then the "<page>" page opens
+  Examples:
+    | page                |
+    | Checkboxes          |
+    | Dropdown            |
+    | Dynamic Controls    |
+    | Form Authentication |
+    | Inputs              |

@@ -1,9 +1,13 @@
-from pytest_bdd import scenarios, given, when, then, parsers
+from pytest_bdd import scenarios, when, then, parsers
 from pages.home import HomePage as page
 from sttable import parse_str_table
+from pages.base import BasePage
 
 scenarios('../features/home_page.feature')
 
+@when(parsers.parse('I click on the "{page_name}" link'))
+def click_page_link(browser, page_name):
+    page(browser).click_page_link(page_name)
 
 @then(parsers.parse('the page title is "{title}"'))
 def verify_page_title(browser, title):
@@ -20,3 +24,7 @@ def verify_subpage_list(browser, datatable, subpages):
     expected = parse_str_table(subpages)
     for field in expected.fields:
         assert expected.columns[field] == page(browser).get_subpage_list()
+
+@then(parsers.parse('the "{page_name}" page opens'))
+def verify_page_opens(browser, page_name, navigate_to):
+    assert navigate_to == page(browser).get_current_url()
