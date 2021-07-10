@@ -3,7 +3,7 @@ Feature: Home Page
 
   Background: Open home page
     Given I have navigated to the 'the-internet' "home" page
-  @focus
+  
   Scenario: Verify home page contents are correct
     Then the page title is "Welcome to the-internet"
     And the sub-header text is "Available Examples"

@@ -110,8 +110,8 @@ def verify_banner_text(browser, text):
 
 @then(parsers.parse('the page has a footer containing "{text}"'))
 def verify_footer_text(browser, text):
-  pass
+  assert text == BasePage(browser).get_page_footer_text()
 
 @then(parsers.parse('the link in the page footer goes to "{url}"'))
 def verify_footer_link_url(browser, url):
-  pass
+  assert url == BasePage(browser).get_page_footer_link_url()
