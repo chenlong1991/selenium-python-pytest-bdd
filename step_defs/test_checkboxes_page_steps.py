@@ -1,5 +1,5 @@
 from pytest_bdd import scenarios, when, then, parsers
-from pages.checkboxes import CheckboxesPage as page
+from pages.checkboxes import CheckboxesPage
 from sttable import parse_str_table
 
 scenarios('../features/checkboxes_page.feature')
@@ -13,25 +13,25 @@ def click_checkbox(browser, ordinal):
     index = int(ordinal[0:len(ordinal)-2]) - 1
     assert isinstance(index, int)
     assert index >= 0
-    page(browser).click_checkbox(index)
+    CheckboxesPage(browser).click_checkbox(index)
 
 
 @then(parsers.parse('the page title is "{title}"'))
 def verify_page_title(browser, title):
-    assert title == page(browser).get_page_title_text()
+    assert title == CheckboxesPage(browser).get_page_title_text()
 
 
 @then(parsers.parse('the page contains {num:d} checkboxes'))
 def verify_num_checkboxes(browser, num):
     assert isinstance(num, int)
-    assert num == page(browser).get_num_checkboxes()
+    assert num == CheckboxesPage(browser).get_num_checkboxes()
 
 
 @then(parsers.parse('the checkbox labels are\n{labels}'))
 def verify_checkbox_labels(browser, datatable, labels):
     expected = parse_str_table(labels)
     for field in expected.fields:
-        assert expected.columns[field] == page(browser).get_checkbox_labels()
+        assert expected.columns[field] == CheckboxesPage(browser).get_checkbox_labels()
 
 
 @then(parsers.parse('the {index:d}{ordinal} checkbox is {state}'))
@@ -40,7 +40,7 @@ def verify_checkbox_state(browser, index, ordinal, state):
     assert index > 0
     assert ordinal in ORDINALS
     assert state in CHECK_STATES
-    checked_state = page(browser).get_checkbox_checked_state(index - 1)
+    checked_state = CheckboxesPage(browser).get_checkbox_checked_state(index - 1)
     if state == 'checked':
         assert checked_state == True
     else:
@@ -54,7 +54,7 @@ def verify_checkbox_state(browser, ordinal, state):
     # assert ordinal in ORDINALS
     index = int(ordinal[0:len(ordinal)-2]) -1 
     assert state in CHECK_STATES
-    checked_state = page(browser).get_checkbox_checked_state(index)
+    checked_state = CheckboxesPage(browser).get_checkbox_checked_state(index)
     if state == 'checked':
         assert checked_state == True
     else:
