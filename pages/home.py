@@ -19,6 +19,7 @@ class HomePage(BasePage):
         for link in links:
             if link.text.startswith(page_name):
                 link.click()
+                break
 
     def get_page_title_text(self):
         return self.browser.find_element(*self.PAGE_TITLE).text

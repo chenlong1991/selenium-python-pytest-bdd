@@ -58,10 +58,10 @@ Feature: Home Page
   And the link in the page footer goes to "http://elementalselenium.com/"
 
 Scenario Outline: Open <page> page
-  When I click on the "<page>" link
-  Then the "<page>" page opens
+  When I click on the <page> link
+  Then the <page> page opens
   Examples:
-    | page                |
+    | page               |
     | Checkboxes          |
     | Dropdown            |
     | Dynamic Controls    |

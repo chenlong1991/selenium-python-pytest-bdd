@@ -77,20 +77,8 @@ class DataTable(object):
 
 @given(parsers.parse('I have navigated to the \'the-internet\' "{page_name}" page'), target_fixture='navigate_to')
 def navigate_to(browser, page_name):
-    BASE_URL = "https://the-internet.herokuapp.com"
-
-    PAGE_URLS = {
-        "home": BASE_URL + "/",
-        "checkboxes": BASE_URL + "/checkboxes",
-        "dropdown": BASE_URL + "/dropdown",
-        "dynamic controls": BASE_URL + "/dynamic_controls",
-        "form authentication": BASE_URL + "/login",
-        "inputs": BASE_URL + "/inputs",
-        "secure area": BASE_URL + "/secure"
-    }
-    url = PAGE_URLS.get(page_name.lower())
+    url = BasePage.PAGE_URLS.get(page_name.lower())
     browser.get(url)
-    return url
 
 
 @then(parsers.parse('a "{text}" banner is displayed in the top-right corner of the page'))

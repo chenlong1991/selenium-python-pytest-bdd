@@ -3,6 +3,18 @@ from selenium.webdriver.common.by import By
 
 class BasePage():
 
+    BASE_URL = "https://the-internet.herokuapp.com"
+
+    PAGE_URLS = {
+        "home": BASE_URL + "/",
+        "checkboxes": BASE_URL + "/checkboxes",
+        "dropdown": BASE_URL + "/dropdown",
+        "dynamic controls": BASE_URL + "/dynamic_controls",
+        "form authentication": BASE_URL + "/login",
+        "inputs": BASE_URL + "/inputs",
+        "secure area": BASE_URL + "/secure"
+    }
+
     @property
     @abstractmethod
     def PAGE_TITLE(self):
