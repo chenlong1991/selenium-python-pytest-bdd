@@ -8,8 +8,6 @@ class DropdownPage(BasePage):
 	def PAGE_TITLE(self):
 		return (By.TAG_NAME, 'h3')
 	DROPDOWN_LIST = (By.TAG_NAME, 'select')
-    # CHECKBOXES_FORM = (By.ID, 'checkboxes')
-    # ALL_CHECKBOXES = (By.XPATH, '//*[@id="checkboxes"]/input')
 
 	def __init__(self, browser):
 		self.browser = browser
