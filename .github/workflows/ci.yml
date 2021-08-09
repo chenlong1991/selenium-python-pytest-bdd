@@ -23,7 +23,9 @@ jobs:
             python-version: '3.x'
 
       - name: Install dependencies
-        run: pipenv install
+        run: |
+          pip install pipenv
+          pipenv install
 
       - name: Run tests
         run: pipenv run pytest
