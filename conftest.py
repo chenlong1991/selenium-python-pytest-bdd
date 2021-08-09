@@ -7,15 +7,21 @@ from webdriver_manager.firefox import GeckoDriverManager
 from pytest_bdd import given, then, parsers
 from pages.base import BasePage
 
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store")
 
 @pytest.fixture
-def config(scope='session'):
+def config(request, scope='session'):
 
     BROWSERS = ['Chrome', 'Firefox']
 
     # Read config file
     with open('config.json') as config_file:
         config = json.load(config_file)
+
+    browser = request.config.option.browser
+    if browser is not None:
+        config['browser'] = browser
 
     # Assert values are acceptable
     assert config['browser'] in BROWSERS
