@@ -8,7 +8,7 @@ Feature: Checkboxes Page
     And the page contains 2 checkboxes
     And the checkbox labels are
       | label      |
-      | checkbox 1 |
+      | checkbox 1a |
       | checkbox 2 |
     And the 1st checkbox is unchecked
     And the 2nd checkbox is checked
